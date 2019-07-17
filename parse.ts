@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import { c } from './lib/Log';
 import { CoreML } from './mlmodel';
+import { inspect } from 'util';
 
 /**
  * Generate static code from .proto files using:
@@ -20,7 +21,12 @@ import { CoreML } from './mlmodel';
 	);
 	const m = CoreML.Specification.Model.decode(buf);
 	
-	c.debug(m.description);
-	c.log(`===`);
-	c.log(m);
+	// c.debug(m.description);
+	// c.log(`===`);
+	console.log(
+		inspect(m, {
+			depth: Infinity,
+			maxArrayLength: Infinity,
+		})
+	);
 })();

@@ -11,6 +11,9 @@ export const c = {
 			? { depth: 20, colors: opts.colors }
 			: { depth: 20, colors: true }
 		;
+		if (process.env.NO_COLOR) {
+			inspectOpts.colors = false;
+		}
 		const s = args.map(o => {
 			if (typeof o === 'string') {
 				return o;
