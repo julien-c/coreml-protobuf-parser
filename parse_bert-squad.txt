@@ -1,0 +1,1826 @@
+[90mModelDescription {[39m
+[90m  input: [[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'word_id',[39m
+[90m      shortDescription: 'Sequence of input symbols. The sequence starts with a start token (101) followed by question tokens that are followed be a separator token (102) and the document tokens.The document tokens end with a separator token (102) and the sequenceis padded with 0 values to length 384.',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType {[39m
+[90m          shape: [[39m
+[90m            Long { low: 1, high: 0, unsigned: false },[39m
+[90m            Long { low: 384, high: 0, unsigned: false }[39m
+[90m          ],[39m
+[90m          dataType: 65600[39m
+[90m        }[39m
+[90m      }[39m
+[90m    },[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'word_type',[39m
+[90m      shortDescription: 'Sequence of token-types. Values of 0 for the start token, question tokens and the question separator. Value 1 for the document tokens and the end separator. The sequence is padded with 0 values to length 384.',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType {[39m
+[90m          shape: [[39m
+[90m            Long { low: 1, high: 0, unsigned: false },[39m
+[90m            Long { low: 384, high: 0, unsigned: false }[39m
+[90m          ],[39m
+[90m          dataType: 65600[39m
+[90m        }[39m
+[90m      }[39m
+[90m    },[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'position',[39m
+[90m      shortDescription: 'Fixed sequence of values from 0 to 383.',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType {[39m
+[90m          shape: [[39m
+[90m            Long { low: 1, high: 0, unsigned: false },[39m
+[90m            Long { low: 384, high: 0, unsigned: false }[39m
+[90m          ],[39m
+[90m          dataType: 65600[39m
+[90m        }[39m
+[90m      }[39m
+[90m    },[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'attention_mask',[39m
+[90m      shortDescription: 'A masking matrix (logits). It has zero values in the first X number of columns, where X = number of input tokens without the padding,and value -1e+4 in the remaining 384-X (padding) columns.',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType {[39m
+[90m          shape: [[39m
+[90m            Long { low: 1, high: 0, unsigned: false },[39m
+[90m            Long { low: 1, high: 0, unsigned: false },[39m
+[90m            Long { low: 384, high: 0, unsigned: false },[39m
+[90m            Long { low: 384, high: 0, unsigned: false }[39m
+[90m          ],[39m
+[90m          dataType: 65600[39m
+[90m        }[39m
+[90m      }[39m
+[90m    }[39m
+[90m  ],[39m
+[90m  output: [[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'start_logits',[39m
+[90m      shortDescription: 'Start token scores of shape (1, 1, 384, 1). The argmax of the third axis is the start index of the predicted answer in the input sequence',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType { shape: [], dataType: 65600 }[39m
+[90m      }[39m
+[90m    },[39m
+[90m    FeatureDescription {[39m
+[90m      name: 'end_logits',[39m
+[90m      shortDescription: 'End token scores of shape (1, 1, 384, 1). The argmax of the third axis is the end index of the predicted answer in the input sequence',[39m
+[90m      type: FeatureType {[39m
+[90m        multiArrayType: ArrayFeatureType { shape: [], dataType: 65600 }[39m
+[90m      }[39m
+[90m    }[39m
+[90m  ],[39m
+[90m  trainingInput: [],[39m
+[90m  metadata: Metadata {[39m
+[90m    userDefined: {},[39m
+[90m    shortDescription: "Find the answer to a given question within a given document. The model was fine-tuned to question-answering using the project https://github.com/huggingface/pytorch-pretrained-BERT and is based on the pre-trained BERT model variant 'bert-base-uncased' (https://github.com/google-research/bert).",[39m
+[90m    author: 'BERT Paper: Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova',[39m
+[90m    license: 'Please see https://github.com/google-research/bert for license information for the pre-trained BERT model, and https://rajpurkar.github.io/SQuAD-explorer/ for license information for the Question-Answering dataset, and https://github.com/huggingface/pytorch-pretrained-BERT for Question-Answering task model fine-tuning license information.'[39m
+[90m  }[39m
+[90m}[39m
+===
+Model {
+  specificationVersion: [33m4[39m,
+  description: ModelDescription {
+    input: [
+      FeatureDescription {
+        name: [32m'word_id'[39m,
+        shortDescription: [32m'Sequence of input symbols. The sequence starts with a start token (101) followed by question tokens that are followed be a separator token (102) and the document tokens.The document tokens end with a separator token (102) and the sequenceis padded with 0 values to length 384.'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType {
+            shape: [
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m384[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            dataType: [33m65600[39m
+          }
+        }
+      },
+      FeatureDescription {
+        name: [32m'word_type'[39m,
+        shortDescription: [32m'Sequence of token-types. Values of 0 for the start token, question tokens and the question separator. Value 1 for the document tokens and the end separator. The sequence is padded with 0 values to length 384.'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType {
+            shape: [
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m384[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            dataType: [33m65600[39m
+          }
+        }
+      },
+      FeatureDescription {
+        name: [32m'position'[39m,
+        shortDescription: [32m'Fixed sequence of values from 0 to 383.'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType {
+            shape: [
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m384[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            dataType: [33m65600[39m
+          }
+        }
+      },
+      FeatureDescription {
+        name: [32m'attention_mask'[39m,
+        shortDescription: [32m'A masking matrix (logits). It has zero values in the first X number of columns, where X = number of input tokens without the padding,and value -1e+4 in the remaining 384-X (padding) columns.'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType {
+            shape: [
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m384[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m384[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            dataType: [33m65600[39m
+          }
+        }
+      }
+    ],
+    output: [
+      FeatureDescription {
+        name: [32m'start_logits'[39m,
+        shortDescription: [32m'Start token scores of shape (1, 1, 384, 1). The argmax of the third axis is the start index of the predicted answer in the input sequence'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType { shape: [], dataType: [33m65600[39m }
+        }
+      },
+      FeatureDescription {
+        name: [32m'end_logits'[39m,
+        shortDescription: [32m'End token scores of shape (1, 1, 384, 1). The argmax of the third axis is the end index of the predicted answer in the input sequence'[39m,
+        type: FeatureType {
+          multiArrayType: ArrayFeatureType { shape: [], dataType: [33m65600[39m }
+        }
+      }
+    ],
+    trainingInput: [],
+    metadata: Metadata {
+      userDefined: {},
+      shortDescription: [32m"Find the answer to a given question within a given document. The model was fine-tuned to question-answering using the project https://github.com/huggingface/pytorch-pretrained-BERT and is based on the pre-trained BERT model variant 'bert-base-uncased' (https://github.com/google-research/bert)."[39m,
+      author: [32m'BERT Paper: Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova'[39m,
+      license: [32m'Please see https://github.com/google-research/bert for license information for the pre-trained BERT model, and https://rajpurkar.github.io/SQuAD-explorer/ for license information for the Question-Answering dataset, and https://github.com/huggingface/pytorch-pretrained-BERT for Question-Answering task model fine-tuning license information.'[39m
+    }
+  },
+  neuralNetwork: NeuralNetwork {
+    layers: [
+      NeuralNetworkLayer {
+        input: [ [32m'word_id'[39m ],
+        output: [ [32m'word_id_transposed'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_id_transposed'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'word_id_transposed'[39m ],
+        output: [ [32m'word_id_expanded_to_rank5'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_id_expanded_to_rank5'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [
+            Long { low: [33m-3[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-2[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'word_id_expanded_to_rank5'[39m ],
+        output: [ [32m'word_id_embedding'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_id_embedding'[39m,
+        embedding: EmbeddingLayerParams {
+          inputDim: Long { low: [33m30522[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 9c a0 fc a1 0d a5 b8 a4 a8 a1 8d a1 33 a2 8b a3 30 a3 07 a4 d2 a1 04 a4 4e a0 55 a4 2d a5 e4 9e 29 a4 61 a5 fd a0 3f a4 81 a5 38 a1 5f a2 5b a2 24 a5 ... 46881742 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'word_type'[39m ],
+        output: [ [32m'word_type_transposed'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_type_transposed'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'word_type_transposed'[39m ],
+        output: [ [32m'word_type_expanded_to_rank5'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_type_expanded_to_rank5'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [
+            Long { low: [33m-3[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-2[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'word_type_expanded_to_rank5'[39m ],
+        output: [ [32m'word_type_embedding'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'word_type_embedding'[39m,
+        embedding: EmbeddingLayerParams {
+          inputDim: Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 09 92 f8 19 f7 20 d1 98 9f 16 ae 98 f6 13 5c 99 21 96 21 9f 14 a1 01 14 72 1e a4 1d 64 9a 13 85 d4 9e 93 9d bf 23 80 8d 8a 19 12 23 13 25 9a 24 9f 15 ... 3022 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'position'[39m ],
+        output: [ [32m'position_transposed'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'position_transposed'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'position_transposed'[39m ],
+        output: [ [32m'position_expanded_to_rank5'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'position_expanded_to_rank5'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [
+            Long { low: [33m-3[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-2[39m, high: [33m-1[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'position_expanded_to_rank5'[39m ],
+        output: [ [32m'position_embedding'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'position_embedding'[39m,
+        embedding: EmbeddingLayerParams {
+          inputDim: Long { low: [33m512[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 7c 24 c1 1f a7 a0 86 9d 4f 9e 43 9c 39 1c 11 96 7c 09 00 1e 03 a0 42 a1 ea a3 3d a5 3e 9d 17 a1 60 a4 1a a1 8c 9f 2a 09 f2 1f 2d 12 d8 20 42 9b d0 a0 ... 786382 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [
+          [32m'word_id_embedding'[39m,
+          [32m'word_type_embedding'[39m,
+          [32m'position_embedding'[39m
+        ],
+        output: [ [32m'added_embeddings'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'adding_embeddings'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'added_embeddings'[39m ],
+        output: [ [32m'added_embeddings_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'added_embeddings_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'added_embeddings_mvn'[39m ],
+        output: [ [32m'embed_out_seq_first'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_seq_first'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 68 3b 17 3b db 3a db 3a 26 3b 28 3b 72 3b 49 3b 83 3b 76 3a 67 3a 6f 3a 39 3b 89 3a 4e 3b ca 3a 87 3a e0 3a 4f 3b eb 3a 62 3b ea 3a 37 3b ee 3a be 3a ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 55 a7 2c a5 6a 26 bd 2d 18 ac 5a a2 3f 21 f2 a3 f1 1b a0 28 33 aa 31 a4 a2 1c b4 ae c4 ac 73 27 bd a4 90 a9 6a ab 7f ad a1 a0 89 a8 bb a9 66 a5 ba 24 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_seq_first'[39m ],
+        output: [ [32m'embed_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m4[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out'[39m ],
+        output: [ [32m'embed_out_query'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 19 a4 80 26 28 a7 b7 28 5a a5 fb 2a 95 22 75 25 c9 19 b9 14 33 20 1b 28 e5 28 e6 1f c9 aa 9f 1d f9 2a 9b 28 a2 2a f0 a9 85 a9 1d 29 7c 2d 3d 25 bd a8 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer b3 38 43 b5 df b6 f9 35 c8 b4 8c 36 a9 22 b7 34 7d 33 04 b0 5c 30 3b 37 4a ae 15 2f e6 36 82 38 db 27 db a9 14 b5 df af 44 1f e0 1e a5 19 8b 37 79 a6 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query'[39m ],
+        output: [ [32m'embed_out_query_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'embed_out_query_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_heads_rank5'[39m ],
+        output: [ [32m'embed_out_query_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_heads_rank4'[39m ],
+        output: [ [32m'embed_out_query_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out'[39m ],
+        output: [ [32m'embed_out_key'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_key'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer c8 21 d3 a8 ac 24 58 29 ca 27 92 ac a2 2b 59 25 b8 a4 9c 13 13 24 0b a7 34 a2 b2 a0 1a 10 f3 1c 6f 27 60 28 46 21 c3 23 48 29 dc 23 a8 a1 3b a8 4a 21 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 53 14 b5 0d 09 99 c3 86 e4 94 83 19 ab 18 de 12 95 18 00 13 d4 13 c8 15 3b 11 d6 96 14 9c f0 17 fa 0a ca 9e e6 93 c9 95 dc 19 e7 1b 3c 90 21 13 d3 10 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_key'[39m ],
+        output: [ [32m'embed_out_key_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'embed_out_key_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_key_heads_rank5'[39m ],
+        output: [ [32m'embed_out_key_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_key_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_key_heads_rank4'[39m ],
+        output: [ [32m'embed_out_key_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_key_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out'[39m ],
+        output: [ [32m'embed_out_value'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_value'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 89 22 38 18 04 a1 b8 1e 15 29 96 a7 66 22 45 9d ec a7 24 28 52 a7 76 a8 7e 0d 29 a6 41 a7 3f a8 dd 92 ec a4 cd a4 33 24 28 aa 10 a3 3a 26 92 a6 92 27 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer f4 9f d0 a4 fc 95 46 24 32 1b 5e 22 0b a8 8d 23 54 22 10 1f 47 a6 31 29 49 9c 88 a0 ce 20 de 9d 32 26 b9 1c 98 a0 3a 24 e0 a8 37 21 0e a5 f7 24 44 1a ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_value'[39m ],
+        output: [ [32m'embed_out_value_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'embed_out_value_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_value_heads_rank5'[39m ],
+        output: [ [32m'embed_out_value_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_value_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_value_heads_rank4'[39m ],
+        output: [ [32m'embed_out_value_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_value_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_heads'[39m, [32m'embed_out_key_heads'[39m ],
+        output: [ [32m'embed_out_query_key_product'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_key_product'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_key_product'[39m ],
+        output: [ [32m'embed_out_query_key_product_scaled'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_key_product_scaled'[39m,
+        multiply: MultiplyLayerParams { alpha: [33m0.125[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_key_product_scaled'[39m, [32m'attention_mask'[39m ],
+        output: [ [32m'embed_out_query_key_product_masked'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_key_product_masked'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_query_key_product_masked'[39m ],
+        output: [ [32m'embed_out_query_key_product_normalized'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_query_key_product_normalized'[39m,
+        softmaxND: SoftmaxNDLayerParams {
+          axis: Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [
+          [32m'embed_out_query_key_product_normalized'[39m,
+          [32m'embed_out_value_heads'[39m
+        ],
+        output: [ [32m'embed_out_qkv'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_qkv'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_qkv'[39m ],
+        output: [ [32m'embed_out_qkv_T'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_qkv_T'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_qkv_T'[39m ],
+        output: [ [32m'embed_out_qkv_folded'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        name: [32m'embed_out_qkv_folded'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_qkv_folded'[39m ],
+        output: [ [32m'embed_out_self_attn_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_self_attn_out'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_self_attn_out'[39m ],
+        output: [ [32m'embed_out_self_attn_out_dense'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_self_attn_out_dense'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 68 1d a0 92 2d 18 79 21 52 9a 2c 27 ea 20 cd a4 05 0d 15 26 62 a6 ab a5 6a 26 29 98 a4 21 29 21 02 23 66 98 39 a6 18 89 ba 9d db 2b 91 28 be a3 c5 1c ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 64 1c 32 a4 34 27 79 a1 c0 24 7c a9 db a4 15 1f 7d a3 63 22 1b 26 4e 2a 95 2a 58 a8 db a4 3e 28 3b 28 07 a2 0d 9d 3a 9c 4b 94 ca 24 2c a5 a3 24 d7 14 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out'[39m, [32m'embed_out_self_attn_out_dense'[39m ],
+        output: [ [32m'embed_out_plus_self_attn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_plus_self_attn'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_plus_self_attn'[39m ],
+        output: [ [32m'embed_out_plus_self_attn_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'embed_out_plus_self_attn_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'embed_out_plus_self_attn_mvn'[39m ],
+        output: [ [32m'0_attention_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer da 3b b0 3b b7 3b a5 3b d7 3b df 3b bc 3b c5 3b a0 3b 92 3b 91 3b 63 3b bf 3b 0a 3c c8 3b 92 3b 9d 3b be 3b af 3b 0d 3c a3 3b fa 3b ae 3b b1 3b af 3b ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 1b 34 cd a7 74 b4 33 b6 e0 35 6c b7 22 38 33 32 22 1f 3a 18 fb 2a a2 33 21 b8 f2 38 7a 30 59 b1 b0 b6 b7 b6 b0 2d d8 38 d0 34 07 b8 96 35 85 34 1b b6 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out'[39m ],
+        output: [ [32m'0_attention_out_ff1'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out_ff1'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer c1 a0 78 98 bd 21 be 28 9f a2 7e 0f de 27 ff aa a5 a6 ca a4 ae 26 e5 a0 a5 a6 14 a6 12 a3 ef 92 70 21 6f 24 91 26 d3 a2 44 1f 2b 2c 9e a0 2e 28 b9 28 ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 5e af 23 ae 05 b0 22 b0 23 ac dd b0 d8 ae a0 af 48 b0 15 b0 b6 25 5a ae c5 b0 e6 ae 3d a4 bc a7 f2 ad 86 ad e6 af 31 af 12 af 12 ae d2 ac 3f b0 1e b0 ... 6094 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out_ff1'[39m ],
+        output: [ [32m'0_attention_out_gelu'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out_gelu'[39m,
+        gelu: GeluLayerParams { mode: [33m2[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out_gelu'[39m ],
+        output: [ [32m'0_attention_out_ff2'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out_ff2'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer a2 a8 05 a5 f2 26 61 24 0a 2c b8 a4 8c a8 56 28 79 a3 73 1f 2e a4 90 24 c0 2d 2a 18 4b 22 cb 1f 6b a2 7c a5 07 a3 76 23 4e 9d 00 a1 1f 24 b9 a2 8d 23 ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 44 aa 4a 32 21 25 e2 27 84 29 2a 29 e3 aa 22 2b 86 24 72 2d 42 a2 84 28 fd 28 e6 ae 09 b0 8d 2c 6c 33 de aa 6c aa 00 a9 ad ab 2b ae 22 a4 38 ab b4 23 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out'[39m, [32m'0_attention_out_ff2'[39m ],
+        output: [ [32m'0_attention_out_dense2_plus_input'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out_dense2_plus_input'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out_dense2_plus_input'[39m ],
+        output: [ [32m'0_attention_out_dense2_plus_input_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_attention_out_dense2_plus_input_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_attention_out_dense2_plus_input_mvn'[39m ],
+        output: [ [32m'0_layer_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 45 3a 76 3a 26 3a db 39 1b 3a 0e 3a 22 3a 3e 3a 59 3a 0c 3a ec 39 d4 39 d9 39 97 39 3c 3a f7 39 0c 3a db 39 66 3a c8 39 1a 3a f8 39 13 3a 27 3a dd 39 ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 8e ae 8f 9d 4d 29 18 2e f0 ae 15 2d 0c b2 e4 ad 21 a6 35 aa c0 a9 dc ae 51 30 c1 b2 f4 af dd 24 81 30 c5 2c 5a ad 2f b4 e8 af be 2b db b1 d9 af 1c 2b ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out'[39m ],
+        output: [ [32m'0_layer_out_query'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer b7 27 59 a6 74 18 b9 23 35 a8 85 1c b6 2b 43 21 7c 16 7a 2b 9e 1f d9 2b d8 24 bd a2 d0 23 9d a5 6e 28 ed 28 38 21 a2 a7 13 a8 3e 2e 97 9a d2 25 c7 a5 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 6d b4 7e 31 07 b4 0d bb 92 36 f3 22 12 38 4a 34 82 36 cf 28 1c 3b 8e 37 dc 22 78 ba cd 36 8a 1f 2f b4 d7 31 09 35 0b 2f 84 34 61 b5 33 39 c0 9d f8 39 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query'[39m ],
+        output: [ [32m'0_layer_out_query_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'0_layer_out_query_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_heads_rank5'[39m ],
+        output: [ [32m'0_layer_out_query_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_heads_rank4'[39m ],
+        output: [ [32m'0_layer_out_query_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out'[39m ],
+        output: [ [32m'0_layer_out_key'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_key'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 58 a8 5b 28 95 a8 47 23 f3 1c 94 2c b7 ae c0 22 3c a5 c9 22 68 aa 11 25 65 27 d1 1a 29 2c 3d a3 8f a0 3c 10 34 29 e1 a0 1a 19 9b a4 b0 ad 98 23 40 ac ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 1e 9d 61 15 0b 9c 93 1e 61 96 96 97 be 10 24 0c ec 0d f1 15 75 11 94 92 00 14 2d 1a e1 10 83 9d 18 95 4b 16 45 14 ec 15 56 9b 55 95 88 98 a2 1c bb 95 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_key'[39m ],
+        output: [ [32m'0_layer_out_key_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'0_layer_out_key_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_key_heads_rank5'[39m ],
+        output: [ [32m'0_layer_out_key_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_key_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_key_heads_rank4'[39m ],
+        output: [ [32m'0_layer_out_key_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_key_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out'[39m ],
+        output: [ [32m'0_layer_out_value'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_value'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 76 9b b3 21 62 24 31 a0 d4 20 c6 21 6a 21 d5 a2 32 0c 22 a5 2c 26 20 a9 9d 29 01 1d f1 aa 26 aa dd aa c0 27 b3 24 f1 28 6f 25 ef a6 9a a8 f6 ab 9b 25 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 59 1a 08 27 28 a0 75 9a 90 a2 94 a6 61 2e 58 23 77 9f 8c a2 00 18 f6 a8 10 a4 2a a1 a2 25 8f a7 d2 a2 c5 a6 ec a6 08 27 62 25 a2 97 52 22 d7 a8 21 1e ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_value'[39m ],
+        output: [ [32m'0_layer_out_value_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'0_layer_out_value_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_value_heads_rank5'[39m ],
+        output: [ [32m'0_layer_out_value_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_value_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_value_heads_rank4'[39m ],
+        output: [ [32m'0_layer_out_value_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_value_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_heads'[39m, [32m'0_layer_out_key_heads'[39m ],
+        output: [ [32m'0_layer_out_query_key_product'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_key_product'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_key_product'[39m ],
+        output: [ [32m'0_layer_out_query_key_product_scaled'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_key_product_scaled'[39m,
+        multiply: MultiplyLayerParams { alpha: [33m0.125[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_key_product_scaled'[39m, [32m'attention_mask'[39m ],
+        output: [ [32m'0_layer_out_query_key_product_masked'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_key_product_masked'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_query_key_product_masked'[39m ],
+        output: [ [32m'0_layer_out_query_key_product_normalized'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_query_key_product_normalized'[39m,
+        softmaxND: SoftmaxNDLayerParams {
+          axis: Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [
+          [32m'0_layer_out_query_key_product_normalized'[39m,
+          [32m'0_layer_out_value_heads'[39m
+        ],
+        output: [ [32m'0_layer_out_qkv'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_qkv'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_qkv'[39m ],
+        output: [ [32m'0_layer_out_qkv_T'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_qkv_T'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_qkv_T'[39m ],
+        output: [ [32m'0_layer_out_qkv_folded'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        name: [32m'0_layer_out_qkv_folded'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_qkv_folded'[39m ],
+        output: [ [32m'0_layer_out_self_attn_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_self_attn_out'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_self_attn_out'[39m ],
+        output: [ [32m'0_layer_out_self_attn_out_dense'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_self_attn_out_dense'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer a6 a2 73 28 9f a8 31 a1 07 1a 06 24 33 22 95 24 51 24 af 13 64 1d 48 21 c1 a8 4e a8 f0 a6 6a a1 b7 0b a2 a5 1d 25 21 a7 48 28 e9 22 de 24 36 a9 81 2a ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 4a 27 1d 2b 8c 22 62 25 24 1d 9e a7 59 ac a7 0d 95 24 9d ab 28 1f 5f 2d 2f 2b 3f af 35 26 25 2e 52 29 bc a7 98 24 1d a8 b8 ae e9 a4 d4 a9 a7 22 b2 1b ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out'[39m, [32m'0_layer_out_self_attn_out_dense'[39m ],
+        output: [ [32m'0_layer_out_plus_self_attn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_plus_self_attn'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_plus_self_attn'[39m ],
+        output: [ [32m'0_layer_out_plus_self_attn_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'0_layer_out_plus_self_attn_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'0_layer_out_plus_self_attn_mvn'[39m ],
+        output: [ [32m'1_attention_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 33 3b f4 3a d5 3a ed 3a 93 3b 64 3b 33 3b 23 3b 1e 3b f2 3a 9f 3a e1 3a e8 3a 36 3b 0b 3b f0 3a 6c 3a 15 3b 3b 3b c0 3b 0a 3b 1d 3b 38 3b 03 3b e2 3a ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 6f 2d 72 30 8a ad f8 b1 a4 32 c1 b3 5c 34 44 31 f0 27 f9 2e 44 a5 a3 33 f3 b1 cb 34 22 9f 05 a3 51 af aa b4 05 ab 24 38 d0 32 e0 b5 49 32 72 2e a4 b1 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out'[39m ],
+        output: [ [32m'1_attention_out_ff1'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out_ff1'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 74 24 31 25 e0 24 43 2b 19 12 6d 28 57 a8 3c a5 b6 ac dd 29 5e a9 90 2c f7 22 5e ab 98 25 45 a9 98 22 6e 23 e3 ae 27 20 7c a1 26 a5 05 a0 e2 24 ce 22 ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer e2 b0 bf ae 6c ad 0a ae 7f ad b4 b0 f2 ae 23 b0 92 b0 90 ae aa af db ad ad b0 ee ae 48 2d 68 ae 84 ad 8d af 88 ac d9 ad a4 af 68 a9 15 ae 60 b0 01 af ... 6094 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out_ff1'[39m ],
+        output: [ [32m'1_attention_out_gelu'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out_gelu'[39m,
+        gelu: GeluLayerParams { mode: [33m2[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out_gelu'[39m ],
+        output: [ [32m'1_attention_out_ff2'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out_ff2'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 57 a6 38 21 2c 29 22 24 ec 29 5d 25 69 2a d7 a4 7c 97 7e 28 42 9f 67 9d 13 aa c8 a9 ae a9 9e ab c8 28 4b ac 40 ab 76 15 23 29 c0 2b 5d a3 e8 2a 5d 9b ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer c4 a6 1d 2e 57 a7 dc 28 47 20 3a 26 d4 ab ec 2e e6 a5 d8 2e 39 29 a4 96 03 25 bb a7 fa ab 27 24 99 30 0b ab fc a4 ca a1 8d 1d c4 aa f6 a9 58 ab 44 ab ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out'[39m, [32m'1_attention_out_ff2'[39m ],
+        output: [ [32m'1_attention_out_dense2_plus_input'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out_dense2_plus_input'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out_dense2_plus_input'[39m ],
+        output: [ [32m'1_attention_out_dense2_plus_input_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_attention_out_dense2_plus_input_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_attention_out_dense2_plus_input_mvn'[39m ],
+        output: [ [32m'1_layer_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 3b 3b 14 3b 16 3b d8 3a fd 3a 03 3b ea 3a 53 3b 6c 3b 1c 3b c1 3a 5b 3a df 3a 72 3a 6c 3b dd 3a e4 3a 73 3a 84 3b 87 3a e6 3a c8 3a 2c 3b 29 3b 9d 3a ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 06 ad ec ae 07 28 ec 2c 55 af ec 2f 0c b2 53 b0 6f ac 57 ac 15 ab 97 b0 59 2c ca b2 04 9d 8d a5 62 2c bb 2d e2 a6 4d b4 3f ae 8d 31 6d b1 85 ab ed 29 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out'[39m ],
+        output: [ [32m'1_layer_out_query'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 4f 2d c8 22 ff ab dd 2d f9 ab 01 2b de b0 b5 2c d0 1d fc 28 6d a9 a7 2f 2b ae e7 2c 80 a7 f7 a1 f8 28 42 2f 53 2c fb a4 e9 a4 b0 31 94 2f 7f 2b de 2c ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer ce 28 a4 28 69 34 e2 b2 e2 aa 6e a9 ed ae 26 31 fa 32 14 2b 37 2f ff b0 8b 35 08 34 63 a8 49 b0 3f ae 8b 28 8a 34 0c 26 ab 2e 13 b1 a6 b4 e3 32 ee b3 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query'[39m ],
+        output: [ [32m'1_layer_out_query_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'1_layer_out_query_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_heads_rank5'[39m ],
+        output: [ [32m'1_layer_out_query_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_heads_rank4'[39m ],
+        output: [ [32m'1_layer_out_query_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out'[39m ],
+        output: [ [32m'1_layer_out_key'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_key'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 15 2a 2a 2d 48 2c 56 ab ef ae 96 a9 9d 2c 32 9d 5d 25 75 a9 ca a0 9f 2d 46 ad d5 a3 21 b1 ff a9 f1 30 98 ad e7 a6 ec 2c f5 ad 40 2d 15 2b 49 aa 21 2a ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 28 8e 28 95 b3 94 77 96 18 0e 90 96 45 95 61 18 57 19 93 0b 28 89 11 80 e3 17 99 91 df 14 ff 0f 75 8c 3f 12 f2 18 4a 19 b9 15 33 14 79 14 2c 8a 34 14 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_key'[39m ],
+        output: [ [32m'1_layer_out_key_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'1_layer_out_key_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_key_heads_rank5'[39m ],
+        output: [ [32m'1_layer_out_key_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_key_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_key_heads_rank4'[39m ],
+        output: [ [32m'1_layer_out_key_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_key_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out'[39m ],
+        output: [ [32m'1_layer_out_value'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_value'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 32 a1 28 a8 ea 24 3e a6 17 25 d2 98 82 22 71 1d 66 25 97 96 07 a5 9e 22 ab a4 5f 2a c5 a4 ff a4 cb 1f b2 9d 10 1e 13 22 3a 2c 29 9f e6 a1 10 24 c2 23 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 23 a7 4c 2a 47 2d 3d 29 d0 38 81 2f 93 aa 13 ac 47 a7 5d a9 f3 2c 01 2d 27 8b a6 31 64 aa f4 b0 65 a5 b5 22 94 25 86 a6 14 b2 07 ad c5 2a 35 28 5b a8 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_value'[39m ],
+        output: [ [32m'1_layer_out_value_heads_rank5'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m5[39m
+          }
+        ],
+        name: [32m'1_layer_out_value_heads_rank5'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m12[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m64[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_value_heads_rank5'[39m ],
+        output: [ [32m'1_layer_out_value_heads_rank4'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_value_heads_rank4'[39m,
+        squeeze: SqueezeLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_value_heads_rank4'[39m ],
+        output: [ [32m'1_layer_out_value_heads'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_value_heads'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_heads'[39m, [32m'1_layer_out_key_heads'[39m ],
+        output: [ [32m'1_layer_out_query_key_product'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_key_product'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_key_product'[39m ],
+        output: [ [32m'1_layer_out_query_key_product_scaled'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_key_product_scaled'[39m,
+        multiply: MultiplyLayerParams { alpha: [33m0.125[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_key_product_scaled'[39m, [32m'attention_mask'[39m ],
+        output: [ [32m'1_layer_out_query_key_product_masked'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_key_product_masked'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_query_key_product_masked'[39m ],
+        output: [ [32m'1_layer_out_query_key_product_normalized'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_query_key_product_normalized'[39m,
+        softmaxND: SoftmaxNDLayerParams {
+          axis: Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [
+          [32m'1_layer_out_query_key_product_normalized'[39m,
+          [32m'1_layer_out_value_heads'[39m
+        ],
+        output: [ [32m'1_layer_out_qkv'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_qkv'[39m,
+        batchedMatmul: BatchedMatMulLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_qkv'[39m ],
+        output: [ [32m'1_layer_out_qkv_T'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_qkv_T'[39m,
+        transpose: TransposeLayerParams {
+          axes: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m2[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+            Long { low: [33m3[39m, high: [33m0[39m, unsigned: [33mtrue[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_qkv_T'[39m ],
+        output: [ [32m'1_layer_out_qkv_folded'[39m ],
+        inputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        outputTensor: [
+          Tensor {
+            dimValue: [
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+              Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+            ],
+            rank: [33m4[39m
+          }
+        ],
+        name: [32m'1_layer_out_qkv_folded'[39m,
+        rankPreservingReshape: RankPreservingReshapeLayerParams {
+          targetShape: [
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m0[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mfalse[39m },
+            Long { low: [33m1[39m, high: [33m0[39m, unsigned: [33mfalse[39m }
+          ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_qkv_folded'[39m ],
+        output: [ [32m'1_layer_out_self_attn_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_self_attn_out'[39m,
+        expandDims: ExpandDimsLayerParams {
+          axes: [ Long { low: [33m-1[39m, high: [33m-1[39m, unsigned: [33mfalse[39m } ]
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_self_attn_out'[39m ],
+        output: [ [32m'1_layer_out_self_attn_out_dense'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_self_attn_out_dense'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 77 1d da 21 bb a9 9c 9f 89 9f ee 25 f1 22 bc a4 e9 21 6b 1f 7e a0 2f 1a 8d a7 04 a6 01 a7 5b 29 5f 20 e4 a7 f9 a4 12 9e 71 9c 95 20 62 21 8f 27 9c 20 ... 1179598 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer f4 23 9b 2f 85 ab 59 2c 6d 1d 4f 1c b6 aa 81 25 3d a8 39 29 19 26 2c 20 73 2d 69 b2 de 28 c3 2c 27 22 a8 ae 1b 28 cd ae a9 b1 6a a5 32 a5 32 af 71 a9 ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out'[39m, [32m'1_layer_out_self_attn_out_dense'[39m ],
+        output: [ [32m'1_layer_out_plus_self_attn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_plus_self_attn'[39m,
+        add: AddLayerParams {}
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_plus_self_attn'[39m ],
+        output: [ [32m'1_layer_out_plus_self_attn_mvn'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'1_layer_out_plus_self_attn_mvn'[39m,
+        mvn: MeanVarianceNormalizeLayerParams {
+          acrossChannels: [33mtrue[39m,
+          normalizeVariance: [33mtrue[39m,
+          epsilon: [33m9.999999960041972e-13[39m
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'1_layer_out_plus_self_attn_mvn'[39m ],
+        output: [ [32m'2_attention_out'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'2_attention_out'[39m,
+        scale: ScaleLayerParams {
+          shapeScale: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          shapeBias: [ Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m } ],
+          scale: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 34 3b 1d 3b e5 3a db 3a a9 3b 51 3b 3b 3b 2b 3b 1e 3b db 3a 8b 3a e1 3a df 3a 0f 3b 1b 3b f2 3a 56 3a bc 3a 22 3b ba 3b 71 3b 36 3b 1d 3b 20 3b 9e 3a ... 1486 more bytes>
+          },
+          hasBias: [33mtrue[39m,
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer b9 30 b8 2f 3f b2 3f b4 2e 35 38 b4 e9 33 eb 2b a5 ac 57 25 aa 22 01 35 4f b4 6b 36 9b a8 3a 29 57 b1 3f b0 4c b0 c4 36 67 36 06 b6 bb 31 2d 33 b3 af ... 1486 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'2_attention_out'[39m ],
+        output: [ [32m'2_attention_out_ff1'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'2_attention_out_ff1'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer c1 a4 44 a1 85 a4 c5 2c f5 94 2f 24 be 9d 2a a4 af 24 e3 1b 08 aa 0e a7 3f a5 f9 9b 5d 20 27 2a 2c 21 85 a0 f6 26 05 25 52 21 b3 25 5c a8 b1 24 d2 29 ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 7a ad 12 b0 4e af 14 ae 03 a6 16 b0 5c b0 ed a4 29 ac 88 af 71 b0 9a a7 13 b0 f4 ad f1 ad 98 ae 94 b0 50 ae 9e b0 20 ac 18 af e2 b0 2e b4 af ae 29 b0 ... 6094 more bytes>
+          }
+        }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'2_attention_out_ff1'[39m ],
+        output: [ [32m'2_attention_out_gelu'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'2_attention_out_gelu'[39m,
+        gelu: GeluLayerParams { mode: [33m2[39m }
+      },
+      NeuralNetworkLayer {
+        input: [ [32m'2_attention_out_gelu'[39m ],
+        output: [ [32m'2_attention_out_ff2'[39m ],
+        inputTensor: [],
+        outputTensor: [],
+        name: [32m'2_attention_out_ff2'[39m,
+        innerProduct: InnerProductLayerParams {
+          inputChannels: Long { low: [33m3072[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          outputChannels: Long { low: [33m768[39m, high: [33m0[39m, unsigned: [33mtrue[39m },
+          hasBias: [33mtrue[39m,
+          weights: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer af ac 1f 28 c4 2a 5c 28 f0 a9 81 29 7c 27 49 24 8a 24 2a 95 74 29 06 a8 3f a4 25 2c 3d 28 37 28 f0 28 80 20 03 a6 fe 0e d3 a5 cf a4 4c a8 60 a7 8e 1c ... 4718542 more bytes>
+          },
+          bias: WeightParams {
+            floatValue: [],
+            float16Value: <Buffer 3b ac 7c 2b 2a a8 9a 1f e1 2b aa a3 4f 18 d9 2d 15 1e 3f 2a d7 24 63 2a 29 26 9f 25 52 ae 20 24 79 30 d3 ab d6 94 74 a9 1d ac 6b ad e3 ab d1 ac ff a5 ... 1486 more bytes>
+          }
+        }
+      },
+      ... 275 more items
+    ],
+    preprocessing: [],
+    arrayInputShapeMapping: [33m1[39m,
+    imageInputShapeMapping: [33m1[39m
+  }
+}
