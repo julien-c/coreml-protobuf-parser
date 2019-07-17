@@ -29,4 +29,10 @@ import { inspect } from 'util';
 			maxArrayLength: Infinity,
 		})
 	);
+	c.log(`===`);
+	
+	const layers = m.neuralNetwork!.layers! as CoreML.Specification.NeuralNetworkLayer[];
+	for (const layer of layers) {
+		c.log(layer.layer);
+	}
 })();
