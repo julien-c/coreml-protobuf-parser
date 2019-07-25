@@ -5,8 +5,16 @@ import { onnx } from './onnx-proto';
 import { inspect } from 'util';
 
 /**
- * Generate static code from .proto files using:
+ * Protobuf bindings for ML model formats, inspired by `netron`.
  * 
+ * 1/ Copy .proto files from source repos with:
+ * 
+ * cp third_party/coremltools/mlmodel/format/* mlmodel/format/
+ * cp third_party/onnx/onnx/{onnx,onnx-operators}.proto onnx/
+ * 
+ * 2/ Generate static code from .proto files using:
+ * 
+ * mlmodel (coreml)
  * ./node_modules/.bin/pbjs -t static-module -w commonjs --es6 -o mlmodel.js mlmodel/format/Model.proto
  * ./node_modules/.bin/pbts -o mlmodel.d.ts mlmodel.js
  * 
@@ -37,18 +45,20 @@ import { inspect } from 'util';
 				maxArrayLength: Infinity,
 			})
 		);
+		
+	} else {
+		
+		const buf = await fs.promises.readFile(
+			process.argv[process.argv.length - 1]
+		);
+		const m = onnx.ModelProto.decode(buf);
+		
+		console.log(
+			inspect(m, {
+				colors: true,
+				depth: Infinity,
+				maxArrayLength: Infinity,
+			})
+		);
 	}
-	
-	const buf = await fs.promises.readFile(
-		process.argv[process.argv.length - 1]
-	);
-	const m = onnx.ModelProto.decode(buf);
-	
-	console.log(
-		inspect(m, {
-			colors: true,
-			depth: Infinity,
-			maxArrayLength: Infinity,
-		})
-	);
 })();

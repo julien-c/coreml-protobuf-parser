@@ -1,0 +1,13 @@
+transpose
+expandDims
+embedding
+add
+mvn
+scale
+innerProduct
+rankPreservingReshape
+squeeze
+batchedMatmul
+multiply
+softmaxND
+gelu
