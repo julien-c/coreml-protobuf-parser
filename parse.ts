@@ -24,7 +24,7 @@ import { inspect } from 'util';
  * 
  */
 
- const MLMODEL = false;
+const MLMODEL = true;
 
 (async () => {
 	if (MLMODEL) {
